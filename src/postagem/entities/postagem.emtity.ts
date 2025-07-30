@@ -1,21 +1,30 @@
-import { IsNotEmpty, isNotEmpty } from "class-validator";
-import { Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn, UpdateQueryBuilder } from "typeorm";
+import { IsNotEmpty } from "class-validator"
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
+import { Tema } from "../../tema/entities/tema.entity"
 
 @Entity({name: "tb_postagens"})
-export class Postagem{
+export class Postagem {
 
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn()    
+    id: number
 
     @IsNotEmpty()
     @Column({length: 100, nullable: false})
-    titulo: string;
+    titulo: string
 
     @IsNotEmpty()
     @Column({length: 1000, nullable: false})
-    texto: string;
+    texto: string
 
     @UpdateDateColumn()
-    data: Date;
+    data: Date
+    
+    @ManyToOne(() => Tema, (tema) => tema.postagem, {
+        onDelete: "CASCADE"
 
-}
+    })
+    @JoinColumn({ name: 'tema_id' })
+    tema: Tema
+
+}                                                                                                                                                               
+
