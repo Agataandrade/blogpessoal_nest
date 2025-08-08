@@ -6,10 +6,7 @@ import { UsuarioService } from './services/usuario.service';
 import { UsuarioController } from './controller/usuario.cntroller';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Usuario]),
-    forwardRef(() => AuthModule)
-  ], 
+  imports: [TypeOrmModule.forFeature([Usuario]), forwardRef(() => AuthModule)],
   providers: [UsuarioService],
   controllers: [UsuarioController],
   exports: [UsuarioService],

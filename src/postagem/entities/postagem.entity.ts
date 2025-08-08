@@ -37,5 +37,5 @@ export class Postagem {
   })
   @JoinColumn({ name: 'usuario_id' })
   usuario: Usuario;
-    static tema: any;
+  static tema: any;
 }
